@@ -21,6 +21,7 @@ a {
 .user-menu {
   padding: 10px 20px;
   height: 20px;
+  display: none;
 }
 
 .user-menu a {
@@ -38,7 +39,7 @@ a {
 
 .nav {
   text-align: center;
-  padding: 1em;
+  padding-top: 1em;
 }
 
 .nav li {
