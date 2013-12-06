@@ -251,34 +251,48 @@
 
     var patch = patches[marker.id];
     var ownerId = patch.get('owner');
-    console.log(users);
+    var farmerId = patch.get('farmer');
 
-    var ownername = "unknown";
+    console.log('farmerId', farmerId);
 
+    var ownerName = "unknown";
     for (var i = 0; i < users.length; i++) {
       userId = users[i].id;
       if (userId == ownerId) {
-        ownername = users[i].get("username");
+        ownerName = users[i].get("username");
         break;
-      };
+      }
     }
-      
-    // name
-    // address
-    // plot size (radius)
-    // icons (product) (apple, onion)
-    // ownername
-    // farmer id
-    // process %
+
+    var farmerName = "unknown";
+    for (var i = 0; i < users.length; i++) {
+      userId = users[i].id;
+      if (userId == farmerId) {
+        farmerName = users[i].get("username");
+        break;
+      }
+    }
+
+    var process = patch.get("process");
+    var occupied = "";
+    if (process == 0) {
+      occupied = "";
+    } else {
+      occupied = '<div class="farmer"><strong>Farmer </strong>' + farmerName + "</div>";
+    }
 
     var contentString =
       '<div class="content">' +
-        '<h1 class="owner">' + ownername + '</h1>' +
         '<div class="address">' +
-          "<p>" + patch.get('address') + "</p>" +
+          "<p><strong>Location </strong>" + patch.get('address') + "</p>" +
         '</div>' +
-        '<div class="address">' +
-          "<p>" + patch.get('address') + "</p>" +
+        '<div class="size">' +
+          "<p><strong>Area </strong>" + patch.get('radius') + " m<sup>2</sup></p>" +
+        '</div>' +
+        '<div class="owner"><p><strong>Owner </strong>' + ownerName + '</p></div>' +
+        occupied +
+        '<div class="info">' +
+          "<p><strong>Info </strong>" + patch.get('description') + "</p>" +
         '</div>' +
       '</div>';
 
