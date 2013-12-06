@@ -203,6 +203,13 @@
                 image = 'images/pear_green.png';
               }
             break;
+          case "strawberry":
+              if (process > 0) {
+                image = 'images/strawberry_black.png';
+              } else {
+                image = 'images/strawberry_green.png';
+              }
+            break;
           default:
           }
           var marker = new google.maps.Marker({
