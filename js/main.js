@@ -1,52 +1,12 @@
 // Avoid `console` errors in browsers that lack a console.
 (function() {
 
-  var CUSTOM_STYLES = true;
-  var lat = 59.3571220;
-  var lon = 18.0552270;
+  var CUSTOM_STYLES = !true;
+  var lat=59.3571220;
+  var lon=18.0552270;
   var map;
 
   var markers = [];
-
-  function getPatches() {
-
-    for (var i = 0, marker; marker = markers[i]; i++) {
-        marker.setMap(null);
-    }
-
-    var PatchObject = Parse.Object.extend("patch");
-    var query = new Parse.Query(PatchObject);
-    query.find({
-      success: function(results) {
-        // Do something with the returned Parse.Object values
-        for (var i = 0; i < results.length; i++) { 
-          var owner    = results[i].get("owner");
-          var farmer   = results[i].get("farmer");
-          var location = results[i].get("location");
-          var process  = results[i].get("process");
-          var product  = results[i].get("product");
-
-          alert("PATCH: " + owner + ", " + farmer + ", " + location.latitude + ", " + location.longitude + ", " + process + ", " + product );
-          markers[i] =  results[i];
-
-          // To add the marker to the map, use the 'map' property
-
-
-        markers.push(marker);
-
-        var myLatlng = new google.maps.LatLng(lat,lon);
-        var marker = new google.maps.Marker({
-          position: myLatlng,
-          map: map,
-          title:"Hello World!"
-        });
-        }
-      },
-      error: function(error) {
-        alert("Error: " + error.code + " " + error.message);
-      }
-    });
-  }
 
   function initialize() {
 
@@ -164,7 +124,36 @@
 
     // Init parse 
     Parse.initialize("wFUtsCkSqOff2CzUc1T5v75quD4kgy0hzenu6PQy", "4LnUhkWbhKNAs3N5rzGtgDoVz38NdxxhL6gPMbBg");
-    getPatches();
+
+    var PatchObject = Parse.Object.extend("patch");
+    var query = new Parse.Query(PatchObject);
+    query.find({
+      success: function(results) {
+        // Do something with the returned Parse.Object values
+        for (var i = 0; i < results.length; i++) { 
+          var owner    = results[i].get("owner");
+          var farmer   = results[i].get("farmer");
+          var location = results[i].get("location");
+          var process  = results[i].get("process");
+          var product  = results[i].get("product");
+
+          console.log("PATCH: " + owner + ", " + farmer + ", " + location.latitude + ", " + location.longitude + ", " + process + ", " + product );
+          //markers[i] =  results[i];    
+
+          var myLatlng = new google.maps.LatLng(location.latitude, location.longitude);
+          var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title:"Hello World!"
+          });
+          markers.push(marker);      
+        }
+
+      },
+      error: function(error) {
+        alert("Error: " + error.code + " " + error.message);
+      }
+    });
 
     // Bias the SearchBox results towards places that are within the bounds of the
     // current map's viewport.
