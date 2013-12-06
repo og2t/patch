@@ -7,6 +7,7 @@
   var map;
 
   var markers = [];
+  var patches = [];
 
   function initialize() {
 
@@ -136,11 +137,27 @@
           var location = results[i].get("location");
           var process  = results[i].get("process");
           var product  = results[i].get("product");
+          var radius   = results[i].get("radius");
 
           console.log("PATCH: " + owner + ", " + farmer + ", " + location.latitude + ", " + location.longitude + ", " + process + ", " + product );
-          //markers[i] =  results[i];    
+          patches[i] =  results[i];    
 
           var myLatlng = new google.maps.LatLng(location.latitude, location.longitude);
+          // Construct the circle for each value in citymap.
+          // Note: We scale the population by a factor of 20.
+          var populationOptions = {
+            strokeColor: '#FF0000',
+            strokeOpacity: 0.8,
+            strokeWeight: 2,
+            fillColor: '#FF0000',
+            fillOpacity: 0.35,
+            map: map,
+            center: myLatlng,
+            radius: radius
+          };
+          // Add the circle for this city to the map.
+          cityCircle = new google.maps.Circle(populationOptions);
+
           var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
