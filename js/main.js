@@ -167,7 +167,7 @@
 
           var circleColor = '#00DD00';
           if (process > 0) {
-            circleColor = '#DD0000';
+            circleColor = '#222222';
           }
 
           var myLatlng = new google.maps.LatLng(location.latitude, location.longitude);
@@ -176,7 +176,7 @@
           var populationOptions = {
             strokeColor: circleColor,
             strokeOpacity: 0.8,
-            strokeWeight: 0.5,
+            strokeWeight: 0.2,
             fillColor: circleColor,
             fillOpacity: 0.35,
             map: map,
@@ -186,9 +186,44 @@
           // Add the circle for this city to the map.
           cityCircle = new google.maps.Circle(populationOptions);
 
+          var image = 'images/apple_green.png';
+
+          switch(product)
+          {
+            case "carrot":
+              if (process > 0) {
+                image = 'images/carrot_black.png';
+              } else {
+                image = 'images/carrot_green.png';
+              }
+            break;
+          case "apple":
+              if (process > 0) {
+                image = 'images/apple_black.png';
+              } else {
+                image = 'images/apple_green.png';
+              }
+            break;
+          case "onion":
+              if (process > 0) {
+                image = 'images/onion_black.png';
+              } else {
+                image = 'images/onion_green.png';
+              }
+            break;
+          case "pear":
+              if (process > 0) {
+                image = 'images/pear_black.png';
+              } else {
+                image = 'images/pear_green.png';
+              }
+            break;
+          default:
+          }
           var marker = new google.maps.Marker({
             position: myLatlng,
             map: map,
+            icon: image,
             title:"Hello World!"
           });
           markers.push(marker);      
