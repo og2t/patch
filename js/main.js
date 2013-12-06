@@ -1,7 +1,7 @@
 // Avoid `console` errors in browsers that lack a console.
 (function() {
 
-  var CUSTOM_STYLES = !true;
+  var CUSTOM_STYLES = true;
   var lat=59.3571220;
   var lon=18.0552270;
   var map;
@@ -14,7 +14,7 @@
 
     if (CUSTOM_STYLES) {
 
-      /*
+      
       var layer = "watercolor";
       map = new google.maps.Map(document.getElementById("map-canvas"), {
         center: new google.maps.LatLng(lat, lon),
@@ -27,12 +27,14 @@
 
       map.mapTypes.set(layer, new google.maps.StamenMapType(layer));
       console.log(layer);
-      */
+      
+      /*
       var mapOptions = {
         zoom: 15,
         center: new google.maps.LatLng(59.3571220,18.0552270)
       };
       map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+      */
       
 
     } else {
@@ -163,7 +165,7 @@
           console.log("PATCH: " + owner + ", " + farmer + ", " + location.latitude + ", " + location.longitude + ", " + process + ", " + product );
           patches[i] =  results[i];    
 
-          var circleColor = '#00DD00';
+          var circleColor = '#007733';
           if (process > 0) {
             circleColor = '#222222';
           }
@@ -173,7 +175,7 @@
           // Note: We scale the population by a factor of 20.
           var populationOptions = {
             strokeColor: circleColor,
-            strokeOpacity: 0.8,
+            strokeOpacity: 0.9,
             strokeWeight: 0.2,
             fillColor: circleColor,
             fillOpacity: 0.35,
