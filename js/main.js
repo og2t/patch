@@ -8,6 +8,7 @@
 
   var markers = [];
   var patches = [];
+  var users   = [];
 
   function initialize() {
 
@@ -126,6 +127,28 @@
     // Init parse 
     Parse.initialize("wFUtsCkSqOff2CzUc1T5v75quD4kgy0hzenu6PQy", "4LnUhkWbhKNAs3N5rzGtgDoVz38NdxxhL6gPMbBg");
 
+    // users 
+    var UserObject = Parse.Object.extend("User");
+    var queryUser = new Parse.Query(UserObject);
+    queryUser.find({
+      success: function(results) {
+        for (var i = 0; i < results.length; i++) { 
+          users[i] = results[i];
+
+          var user     = results[i].get("username");
+          var email    = results[i].get("email");
+          var objectId = results[i].id;
+          var role     = results[i].get("role");
+
+          console.log("USER: " + objectId + ", " + user + ", " + email + ", " + role);
+        }
+      },
+      error: function(error) {
+        alert("Error: " + error.code + " " + error.message);
+      }
+    });
+
+    // patches 
     var PatchObject = Parse.Object.extend("patch");
     var query = new Parse.Query(PatchObject);
     query.find({
@@ -142,14 +165,19 @@
           console.log("PATCH: " + owner + ", " + farmer + ", " + location.latitude + ", " + location.longitude + ", " + process + ", " + product );
           patches[i] =  results[i];    
 
+          var circleColor = '#00DD00';
+          if (process > 0) {
+            circleColor = '#DD0000';
+          }
+
           var myLatlng = new google.maps.LatLng(location.latitude, location.longitude);
           // Construct the circle for each value in citymap.
           // Note: We scale the population by a factor of 20.
           var populationOptions = {
-            strokeColor: '#FF0000',
+            strokeColor: circleColor,
             strokeOpacity: 0.8,
-            strokeWeight: 2,
-            fillColor: '#FF0000',
+            strokeWeight: 0.5,
+            fillColor: circleColor,
             fillOpacity: 0.35,
             map: map,
             center: myLatlng,
@@ -165,7 +193,6 @@
           });
           markers.push(marker);      
         }
-
       },
       error: function(error) {
         alert("Error: " + error.code + " " + error.message);
