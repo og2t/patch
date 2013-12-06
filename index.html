@@ -16,7 +16,7 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/patch.css">
   <script src="js/vendor/modernizr-2.6.2.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=places"></script>
   <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
 </head>
 <body>
@@ -24,8 +24,17 @@
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-  <div id="map-canvas"></div>
-  
+  <div class="wrapper">
+    <h1 class="title">PATCH</h1>
+    <h2 class="slogan">Healthy 50/50</h2>
+    
+    <!-- Search box -->
+    <input id="pac-input" class="controls" type="text" placeholder="Search for Patch">
+
+    <!-- Map -->
+    <div id="map-canvas"></div>
+  </div>
+
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
   <script src="js/main.js"></script>
