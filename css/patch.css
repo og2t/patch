@@ -1,32 +1,44 @@
-.wrapper {
-  height: 100%;
+html, body {
   width: 100%;
-  margin: 20px;
+  height: 100%;
+  font-family: 'Lato', sans-serif;
+}
+
+body {
+  margin: 0 !important;
+}
+
+.wrapper {
+  width: 100%;
 }
 
 .title {
+  text-align: center;
+  font-size: 5.0em;
+  font-weight: 100 !important;
 }
 
 .slogan {
+  text-align: center;
 }
 
 #map-canvas {
-  height: 100%;
-  width: 100%;
+  margin: 20px 0;
+  height: 500px;
 }
 
 .controls {
   margin-top: 16px;
-  border: 1px solid transparent;
+  border: 1px solid #4d90fe;
   border-radius: 2px 0 0 2px;
   box-sizing: border-box;
   -moz-box-sizing: border-box;
   height: 32px;
   outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 #pac-input {
+  margin-left: 16px;
   background-color: #fff;
   padding: 0 11px 0 13px;
   width: 400px;
@@ -38,9 +50,8 @@
 }
 
 #pac-input:focus {
-  border-color: #4d90fe;
-  margin-left: -1px;
-  padding-left: 14px;  /* Regular padding-left + 1. */
+  margin-left: 16px;
+  border-color: #000;
   width: 401px;
 }
 

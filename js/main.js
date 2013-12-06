@@ -37,8 +37,8 @@
       var styles = [
         {
           stylers: [
-            { hue: "#00ffe6" },
-            { saturation: -20 }
+            { hue: 0 },
+            { saturation: -60 }
           ]
         },{
           featureType: "road",
@@ -59,7 +59,7 @@
     // Create a new StyledMapType object, passing it the array of styles,
     // as well as the name to be displayed on the map type control.
     var styledMap = new google.maps.StyledMapType(styles,
-      {name: "Styled Map"});
+      {name: "Patchmap"});
 
     // Create a map object, and include the MapTypeId to add
     // to the map type control.
