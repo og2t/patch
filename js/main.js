@@ -212,30 +212,36 @@
 
   function showInfoWindow(marker) {
 
-    var ownerId = patches[marker.id].get('owner');
+    var patch = patches[marker.id];
+    var ownerId = patch.get('owner');
     console.log(users);
 
-    var username = "unknown";
+    var ownername = "unknown";
 
     for (var i = 0; i < users.length; i++) {
       userId = users[i].id;
       if (userId == ownerId) {
-        username = users[i].get("username");
+        ownername = users[i].get("username");
         break;
       };
     }
       
     // name
     // address
-    // plot size
-    // icons
-    // contact
+    // plot size (radius)
+    // icons (product) (apple, onion)
+    // ownername
+    // farmer id
+    // process %
 
     var contentString =
       '<div class="content">' +
-        '<h1 class="firstHeading">' + username + '</h1>' +
-        '<div clas="bodyContent">' +
-          "<p>lorem We can't yet attach this overlay to the map in the overlay's constructor. First, we need to ensure that all of the map's panes are available, because they specify the order in which objects are displayed on a map. The API provides a helper method indicating this has occurred. We'll handle that method in the next section.</p>" +
+        '<h1 class="owner">' + ownername + '</h1>' +
+        '<div class="address">' +
+          "<p>" + patch.get('address') + "</p>" +
+        '</div>' +
+        '<div class="address">' +
+          "<p>" + patch.get('address') + "</p>" +
         '</div>' +
       '</div>';
 
