@@ -146,10 +146,10 @@
           // Construct the circle for each value in citymap.
           // Note: We scale the population by a factor of 20.
           var populationOptions = {
-            strokeColor: '#FF0000',
+            strokeColor: '#00FF00',
             strokeOpacity: 0.8,
             strokeWeight: 2,
-            fillColor: '#FF0000',
+            fillColor: '#00FF00',
             fillOpacity: 0.35,
             map: map,
             center: myLatlng,

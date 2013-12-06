@@ -19,12 +19,35 @@ a {
 }
 
 .user-menu {
-  
+  padding: 10px 20px;
+  height: 20px;
+}
+
+.user-menu a {
+  font-size: 1.2em;
+  font-weight: 300;
+}
+
+.primary {
+  float: left;
+}
+
+.secondary {
+  float: right;
+}
+
+.nav {
+  text-align: center;
+  padding: 1em;
 }
 
 .nav li {
   display: inline;
-  margin: 0 20px;
+  margin: 0 2em;
+}
+
+.nav li a {
+  font-size: 1.2em;
 }
 
 .title {
@@ -34,6 +57,7 @@ a {
 }
 
 .slogan {
+  display: none;
   text-align: center;
 }
 
