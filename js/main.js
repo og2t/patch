@@ -83,7 +83,7 @@
       }
     };
 
-    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
     //Associate the styled map with the MapTypeId and set it to display.
     map.mapTypes.set('map_style', styledMap);
@@ -92,8 +92,6 @@
     // Create the search box and link it to the UI element.
     var input = /** @type {HTMLInputElement} */(
         document.getElementById('pac-input'));
-
-    console.log('>>>', input)    
 
     var searchBox = new google.maps.places.SearchBox(
       /** @type {HTMLInputElement} */(input));
@@ -224,8 +222,11 @@
             position: myLatlng,
             map: map,
             icon: image,
-            title:"Hello World!"
+            id: i
           });
+
+          google.maps.event.addListener(marker, 'click', $.proxy(showInfoWindow, this, marker));
+
           markers.push(marker);      
         }
       },
@@ -242,7 +243,48 @@
     });
   }
 
+
+
+  function showInfoWindow(marker) {
+
+    var ownerId = patches[marker.id].get('owner');
+    console.log(users);
+
+    var username = "unknown";
+
+    for (var i = 0; i < users.length; i++) {
+      userId = users[i].id;
+      if (userId == ownerId) {
+        username = users[i].get("username");
+        break;
+      };
+    }
+      
+    // name
+    // address
+    // plot size
+    // icons
+    // contact
+
+    var contentString =
+      '<div class="content">' +
+        '<h1 class="firstHeading">' + username + '</h1>' +
+        '<div clas="bodyContent">' +
+          "<p>lorem We can't yet attach this overlay to the map in the overlay's constructor. First, we need to ensure that all of the map's panes are available, because they specify the order in which objects are displayed on a map. The API provides a helper method indicating this has occurred. We'll handle that method in the next section.</p>" +
+        '</div>' +
+      '</div>';
+
+    var infowindow = new google.maps.InfoWindow({
+      content: contentString,
+      maxWidth: 200
+    });
+
+    infowindow.open(map, marker);
+  }
+
+
   // Init
   google.maps.event.addDomListener(window, 'load', initialize);
+
 
 }());
