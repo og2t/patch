@@ -2,8 +2,8 @@
 (function() {
 
   var CUSTOM_STYLES = true;
-  var lat=59.353;
-  var lon=18.0;
+  var lat = 59.3571220;
+  var lon = 18.0552270;
   var map;
   var searchBox;
 
@@ -103,7 +103,11 @@
 
       map.fitBounds(bounds);
     });
-    // [END region_getplaces]
+
+    // doesn't work but still...
+    google.maps.event.addListener(map,'mouseover',function(e){
+      $('html, body').stop();
+    });
 
     // Init parse 
     Parse.initialize("wFUtsCkSqOff2CzUc1T5v75quD4kgy0hzenu6PQy", "4LnUhkWbhKNAs3N5rzGtgDoVz38NdxxhL6gPMbBg");
