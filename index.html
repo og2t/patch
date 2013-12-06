@@ -16,20 +16,17 @@
   <link rel="stylesheet" href="css/main.css">
   <link rel="stylesheet" href="css/patch.css">
   <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+  <script type="text/javascript" src="http://maps.stamen.com/js/tile.stamen.js?v1.2.4"></script>
 </head>
 <body>
 <!--[if lt IE 7]>
     <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
 <![endif]-->
 
-  <div class="map">
-    <!-- Add our map content here -->
-    <p>Maps to come here...</p>
-  </div>
-
+  
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
-  <script src="js/plugins.js"></script>
   <script src="js/main.js"></script>
 
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
@@ -41,5 +38,9 @@
       r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
       ga('create','UA-XXXXX-X');ga('send','pageview');
   </script>
+
+  <div id="map-canvas">
+  </div>
+
 </body>
 </html>
