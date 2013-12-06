@@ -2,9 +2,10 @@
 (function() {
 
   var CUSTOM_STYLES = true;
-  var lat=59.3571220;
-  var lon=18.0552270;
+  var lat=59.353;
+  var lon=18.0;
   var map;
+  var searchBox;
 
   var markers = [];
   var patches = [];
@@ -12,13 +13,19 @@
 
   function initialize() {
 
+    // Create the search box and link it to the UI element.
+    var input = /** @type {HTMLInputElement} */(
+        document.getElementById('pac-input'));
+
+    searchBox = new google.maps.places.SearchBox(
+      /** @type {HTMLInputElement} */(input));
+
     if (CUSTOM_STYLES) {
 
-      
       var layer = "watercolor";
       map = new google.maps.Map(document.getElementById("map-canvas"), {
         center: new google.maps.LatLng(lat, lon),
-        zoom: 15,
+        zoom: 2,
         mapTypeId: layer,
         mapTypeControlOptions: {
             mapTypeIds: [layer]
@@ -26,26 +33,8 @@
       });
 
       map.mapTypes.set(layer, new google.maps.StamenMapType(layer));
-      console.log(layer);
-      
-      /*
-      var mapOptions = {
-        zoom: 15,
-        center: new google.maps.LatLng(59.3571220,18.0552270)
-      };
-      map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-      */
-      
 
     } else {
-      // var kmlUrl = '/kml/dzialka.kml';
-      // var kmlOptions = {
-      //   suppressInfoWindows: !true,
-      //   preserveViewport: false,
-      //   map: map
-      // };
-      // var kmlLayer = new google.maps.KmlLayer(kmlUrl, kmlOptions);
-
 
       // Create an array of styles.
       var styles = [
@@ -90,13 +79,7 @@
     //Associate the styled map with the MapTypeId and set it to display.
     map.mapTypes.set('map_style', styledMap);
     map.setMapTypeId('map_style');
-
-    // Create the search box and link it to the UI element.
-    var input = /** @type {HTMLInputElement} */(
-        document.getElementById('pac-input'));
-
-    var searchBox = new google.maps.places.SearchBox(
-      /** @type {HTMLInputElement} */(input));
+  }
 
     // [START region_getplaces]
     // Listen for the event fired when the user selects an item from the
@@ -121,8 +104,6 @@
       map.fitBounds(bounds);
     });
     // [END region_getplaces]
-
-  }
 
     // Init parse 
     Parse.initialize("wFUtsCkSqOff2CzUc1T5v75quD4kgy0hzenu6PQy", "4LnUhkWbhKNAs3N5rzGtgDoVz38NdxxhL6gPMbBg");
@@ -278,11 +259,11 @@
     if (process == 0) {
       occupied = "";
     } else {
-      occupied = '<div class="farmer"><strong>Farmer </strong>' + farmerName + "</div>";
+      occupied = '<div class="farmer"><p><strong>Farmer </strong>' + farmerName + "</p></div>";
     }
 
     var contentString =
-      '<div class="content">' +
+      '<div class="overlay-content">' +
         '<div class="address">' +
           "<p><strong>Location </strong>" + patch.get('address') + "</p>" +
         '</div>' +
@@ -298,7 +279,7 @@
 
     var infowindow = new google.maps.InfoWindow({
       content: contentString,
-      maxWidth: 200
+      maxWidth: 500
     });
 
     infowindow.open(map, marker);

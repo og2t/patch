@@ -65,6 +65,10 @@ a {
   height: 500px;
 }
 
+#map-canvas .overlay-content p {
+  font-size: 1.2em !important;
+}
+
 .controls {
   margin-top: 16px;
   border: 1px solid #4d90fe;
