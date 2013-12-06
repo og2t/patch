@@ -9,8 +9,22 @@ html, body {
   margin: 0;
 }
 
+a {
+  text-decoration: none;
+  color: #888;
+}
+
 .wrapper {
   width: 100%;
+}
+
+.user-menu {
+  
+}
+
+.nav li {
+  display: inline;
+  margin: 0 20px;
 }
 
 .title {
